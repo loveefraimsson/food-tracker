@@ -5,3 +5,21 @@ header {
     padding: 0px 40px;
     border-bottom: 1px solid black;
 }
+
+.accordion .accordionItem {
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.accordion .accordionItem  .accordionTitle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accordion .accordionItem  .accordionTitle div {
+    font-size: 24px;
+    padding: 5px;
+    border: 1px solid grey;
+}
+
