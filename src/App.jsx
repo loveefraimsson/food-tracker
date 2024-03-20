@@ -7,13 +7,17 @@ import FavoriteFood from './components/FavoriteFood';
 
 
 function App() {
-  
- 
+
+  const [favoritefood, setFavoritefood] = useState([]);
+
+  function handleClick(item) {
+    setFavoritefood((prev) => [...prev, item])
+  }
 
   return (
     <>
       <Header />
-      <Searchbar />
+      <Searchbar handleClick={handleClick} />
     </>
   )
 }

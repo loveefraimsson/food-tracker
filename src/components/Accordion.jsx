@@ -4,11 +4,7 @@ function Accordion(props) {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    function handleClick() {
-        if(!isOpen) {
-            setIsOpen(false)
-        }
-    }
+    
 
     return(
         <section className="accordionItem" key={props.Livsmedelsnamn}>
@@ -24,8 +20,8 @@ function Accordion(props) {
                 <p>Kolhydrater: {props.item['Kolhydrater, tillgängliga (g)']}g</p>
                 <p>Fett: {props.item['Fett, totalt (g)']}g</p>
 
-                <button onClick={handleClick}>Favoritmarkera</button>
-                <button>Lägg till i recept</button>
+                <button onClick={() => props.handleClick(props.item)} id="favoriteMark">Favoritmarkera</button>
+                <button onClick={props.handleClick} id="addToRecipe">Lägg till i recept</button>
             </div>}
             
         </section>

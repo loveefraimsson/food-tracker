@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import foodList from '../food.json';
 import Accordion from "./Accordion";
 
-function Searchbar() {
+function Searchbar(props) {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+
+    const [favoritefood, setFavoritefood] = useState([]);
 
     const handleInputChange = (event) => {
         const { value } = event.target;
@@ -25,7 +27,7 @@ function Searchbar() {
         setFilteredData(filteredData);
     };
 
-
+    
 
     return (
         <>
@@ -42,7 +44,7 @@ function Searchbar() {
                 {
                     filteredData.map((item) => {
                         return (
-                           <Accordion key={item.Livsmedelsnamn} item={item} />
+                           <Accordion key={item.Livsmedelsnamn} item={item} handleClick={props.handleClick} />
                         )
                     })
                 }
