@@ -32,7 +32,6 @@ function Searchbar(props) {
 
     return (
         <>  
-            {/* <Header /> */}
             <h2>Sök</h2>
             <input
                 type="text"
@@ -47,7 +46,7 @@ function Searchbar(props) {
                 {
                     filteredData.map((item) => {
                         return (
-                           <Accordion key={item.Livsmedelsnamn} item={item} handleClick={props.handleClick} />
+                           <Accordion key={item.Livsmedelsnamn} item={item} />
                         )
                     })
                 }

@@ -23,3 +23,6 @@ header {
     border: 1px solid grey;
 }
 
+.favoriteFoodSection {
+    border-bottom: 1px solid lightgrey;
+}
