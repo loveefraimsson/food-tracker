@@ -19,23 +19,43 @@ function FavoriteFood(props) {
     return (
         <>
             <h1>Din favoritmat</h1>
+            <section className="favoriteFoodSection" >
+            <table>
+                <thead>
+                    <tr>
+                        <th>Namn</th>
+                        <th>Kalorier</th>
+                        <th>Protein</th>
+                        <th>Kolhydrater</th>
+                        <th>Fett</th>
+                        <th>Ta bort</th>
+                    </tr>
+                </thead>
+                <tbody>
             
            {
                 favoritefood ?
 
                 favoritefood.map((food) => {
                     return (
-                        <section className="favoriteFoodSection" key={food.Livsmedelsnummer}>
-                            <p>{food.Livsmedelsnamn}</p>
-                            <button onClick={() => removeFavoriteMark(food)} className="removeFavorite">Ta bort</button>
-                        </section>
+                            <tr key={food.Livsmedelsnummer}>
+                                <td>{food.Livsmedelsnamn}</td>
+                                <td>{food['Energi (kcal)']}</td>
+                                <td>{food['Protein (g)']}g</td>
+                                <td>{food['Kolhydrater, tillgängliga (g)']}g</td>
+                                <td>{food['Fett, totalt (g)']}g</td>
+                                <td><button onClick={() => removeFavoriteMark(food)} className="removeFavorite">Ta bort</button></td>
+                            </tr>
                     )
                 })
                 : null
             }
+            </tbody>
+            </table>
+            </section>
 
-        </>
         
+            </> 
     )
 }
 

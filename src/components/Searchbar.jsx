@@ -38,6 +38,10 @@ function Searchbar(props) {
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={handleInputChange}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter")
+                        handleSearch();
+                    }}
             />
 
             <button onClick={handleSearch}>Sök!</button> 
