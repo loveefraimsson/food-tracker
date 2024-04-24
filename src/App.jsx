@@ -14,19 +14,12 @@ import {
 
 function App() {
 
-  const [favoritefood, setFavoritefood] = useState([]);
-  const [test, setTest] = useState('test');
-
-  function handleClick(item) {
-    setFavoritefood((prev) => [...prev, item])
-  }
-
   return (
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<Searchbar handleClick={handleClick} />} />
-        <Route path='/favoritefood' element={<FavoriteFood test={'tests'} />} />
+        <Route path='/' element={<Searchbar />} />
+        <Route path='/favoritefood' element={<FavoriteFood />} />
         <Route path='/recipe' element={<Recipe />} />
       </Routes>
     </>
