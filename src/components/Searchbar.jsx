@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header from "./Header";
 import foodList from '../food.json';
 import Accordion from "./Accordion";
 
@@ -30,7 +31,9 @@ function Searchbar(props) {
     
 
     return (
-        <>
+        <>  
+            {/* <Header /> */}
+            <h2>Sök</h2>
             <input
                 type="text"
                 placeholder="Search..."

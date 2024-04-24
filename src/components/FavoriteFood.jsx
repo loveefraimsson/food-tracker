@@ -1,11 +1,10 @@
 import React from "react";
-import Header from "./Header";
 
-function FavoriteFood() {
+function FavoriteFood(props) {
 
+    console.log(props);
     return (
         <>
-            <Header />
             <h1>Favorite food</h1>
         </>
         
