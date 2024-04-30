@@ -52,7 +52,14 @@ function Accordion(props) {
                 <p>Protein: {props.item['Protein (g)']}g</p>
                 <p>Kolhydrater: {props.item['Kolhydrater, tillgängliga (g)']}g</p>
                 <p>Fett: {props.item['Fett, totalt (g)']}g</p>
-                <button onClick={() => handleFavorite(props.item)} id="favoriteMark">{isFavoriteMarked ? 'Ta bort som favorit' : 'Favoritmarkera'}</button>
+                <button onClick={() => handleFavorite(props.item)} id="favoriteMark">{isFavoriteMarked ? 'Ta bort som favorit' : 'Favoritmarkera'}</button> <br />
+
+                <select name="" id="">
+                    <option value="">Recept 1</option>
+                    <option value="">Recept 2</option>
+                    <option value="">Recept 3</option>
+                </select>
+
                 <button onClick={props.handleClick} id="addToRecipe">Lägg till i recept</button>
             </div>}
             
