@@ -10,14 +10,7 @@ function Searchbar(props) {
     const [filteredData, setFilteredData] = useState([]);
     const [favoritefood, setFavoritefood] = useState([]);
     const [recipeNameInput, setRecipeNameInput] = useState('');
-    //const [allRecipes, setAllRecipes] = useState(JSON.parse(localStorage.getItem('allRecipes')) ? JSON.parse(localStorage.getItem('allRecipes')) : []);
     const [allRecipes, setAllRecipes] = useState(props.allRecipes)
-
-
-    //Saves all recipes in localStorage when a new recipe is added
-    useEffect(() => {
-        localStorage.setItem('allRecipes', JSON.stringify(allRecipes))
-    }, [allRecipes])
 
 
     //Search function
@@ -39,24 +32,19 @@ function Searchbar(props) {
     };
 
 
-    //Add recipe
+    //Add recipe name in state
     function addRecipeNameInput(event) {
         setRecipeNameInput(event.target.value)
     }
 
 
-    function addRecipe() {
-        setAllRecipes(prevState => {
-            return[...prevState, {recipeName: recipeNameInput, id: nanoid(5), recipeContent: []}]
-        })       
+    function addToRecipe(selectedRecipe, foodProduct) {
+        
     }
 
-
-    function addToRecipe(selectedRecipe, foodProduct) {
-        //console.log('selectedRecipe', selectedRecipe);
-        //console.log('foodProduct', foodProduct);
-
-        setAllRecipes()
+    function addRecipeFunction(recipeNameInput) {
+        props.addRecipe(recipeNameInput);
+        setRecipeNameInput('');
     }
 
     
@@ -83,10 +71,12 @@ function Searchbar(props) {
                     <input 
                         type="text"
                         placeholder="Lägg till recept..."
+                        value={recipeNameInput}
                         onChange={addRecipeNameInput}
                     
                     />
-                    <button onClick={addRecipe}>Lägg till recept</button>
+                    <button onClick={() => addRecipeFunction(recipeNameInput)}>Lägg till recept</button>
+
                 </section>
                 
             </section>
