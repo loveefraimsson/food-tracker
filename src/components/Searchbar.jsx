@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import foodList from '../food.json';
 import Accordion from "./Accordion";
+import { nanoid } from 'nanoid';
 
 function Searchbar(props) {
 
@@ -9,12 +10,15 @@ function Searchbar(props) {
     const [filteredData, setFilteredData] = useState([]);
     const [favoritefood, setFavoritefood] = useState([]);
     const [recipeNameInput, setRecipeNameInput] = useState('');
-    const [allRecipes, setAllRecipes] = useState([]);
+    //const [allRecipes, setAllRecipes] = useState(JSON.parse(localStorage.getItem('allRecipes')) ? JSON.parse(localStorage.getItem('allRecipes')) : []);
+    const [allRecipes, setAllRecipes] = useState(props.allRecipes)
 
 
+    //Saves all recipes in localStorage when a new recipe is added
     useEffect(() => {
         localStorage.setItem('allRecipes', JSON.stringify(allRecipes))
     }, [allRecipes])
+
 
     //Search function
     const handleSearchInput = (event) => {
@@ -43,9 +47,16 @@ function Searchbar(props) {
 
     function addRecipe() {
         setAllRecipes(prevState => {
-            return[...prevState, {recipeName: recipeNameInput, recipeContent: []}]
-        })
-       
+            return[...prevState, {recipeName: recipeNameInput, id: nanoid(5), recipeContent: []}]
+        })       
+    }
+
+
+    function addToRecipe(selectedRecipe, foodProduct) {
+        //console.log('selectedRecipe', selectedRecipe);
+        //console.log('foodProduct', foodProduct);
+
+        setAllRecipes()
     }
 
     
@@ -87,7 +98,12 @@ function Searchbar(props) {
                 {
                     filteredData.map((item) => {
                         return (
-                           <Accordion key={item.Livsmedelsnamn} item={item} />
+                            <Accordion 
+                                key={item.Livsmedelsnamn} 
+                                item={item}
+                                allRecipes={allRecipes}
+                                addToRecipe={addToRecipe}
+                            />
                         )
                     })
                 }

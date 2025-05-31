@@ -4,7 +4,8 @@ function Accordion(props) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [isFavoriteMarked, setIsFavoriteMarked] = useState(false);
-    const [foodProduct, setFoodProduct] = useState(props.item)
+    const [foodProduct, setFoodProduct] = useState(props.item);
+    const [selectedRecipe, setSelectedRecipe] = useState('')
 
     //Adds food item as favorite to localStorage
     function handleFavorite(item) {
@@ -12,8 +13,9 @@ function Accordion(props) {
     }
 
 
+    //Toggles favorite marked
     useEffect(() => {
-        let favoriteFoodFromLS = JSON.parse(localStorage.getItem('favoriteFood'));
+        let favoriteFoodFromLS = JSON.parse(localStorage.getItem('favoriteFood')) ? JSON.parse(localStorage.getItem('favoriteFood')) : [];
         
         favoriteFoodFromLS.map((food) => {
             if(food.Livsmedelsnummer !== props.item.Livsmedelsnummer) {
@@ -22,6 +24,8 @@ function Accordion(props) {
         })
     }, [])
 
+
+    //When product is favorite marked toggled, it saves the result to localStorage
     useEffect(() => {
         if(isFavoriteMarked) {
             let favoriteFood = JSON.parse(localStorage.getItem('favoriteFood')) ? JSON.parse(localStorage.getItem('favoriteFood')) : [];
@@ -39,6 +43,11 @@ function Accordion(props) {
     }, [isFavoriteMarked])
     
 
+    function recipeSelect(event) {
+        setSelectedRecipe(event.target.value);
+    }
+
+
     return(
         <section className="accordionItem" key={props.Livsmedelsnamn}>
             <div className="accordionTitle" onClick={() => setIsOpen(!isOpen)}>
@@ -54,13 +63,19 @@ function Accordion(props) {
                 <p>Fett: {props.item['Fett, totalt (g)']}g</p>
                 <button onClick={() => handleFavorite(props.item)} id="favoriteMark">{isFavoriteMarked ? 'Ta bort som favorit' : 'Favoritmarkera'}</button> <br />
 
-                <select name="" id="">
-                    <option value="">Recept 1</option>
-                    <option value="">Recept 2</option>
-                    <option value="">Recept 3</option>
+                <select name="recipes" id="recipesSelect" onChange={recipeSelect}>
+                    {
+                        props.allRecipes ?
+                        props.allRecipes.map((recipe) => {
+                            return (
+                                <option key={recipe.id} value={recipe.id}>{recipe.recipeName}</option>
+                            )
+                        })
+                        : []
+                    }
                 </select>
 
-                <button onClick={props.handleClick} id="addToRecipe">Lägg till i recept</button>
+                <button onClick={() => {props.addToRecipe(selectedRecipe, foodProduct)}} id="addToRecipe">Lägg till i recept</button>
             </div>}
             
         </section>

@@ -14,13 +14,15 @@ import {
 
 function App() {
 
-  
+  /* const [allRecipes, setAllRecipes] = useState(JSON.parse(localStorage.getItem('allRecipes')) ? JSON.parse(localStorage.getItem('allRecipes')) : []); */
+  const [allRecipes, setAllRecipes] = useState('Alla recept');
+
 
   return (
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<Searchbar />} />
+        <Route path='/' element={<Searchbar allRecipes={allRecipes} />} />
         <Route path='/favoritefood' element={<FavoriteFood />} />
         <Route path='/recipe' element={<Recipe />} />
       </Routes>
